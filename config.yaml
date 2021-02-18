@@ -1,0 +1,26 @@
+output_dir: ./training
+batch_size: 16
+
+# Tokenizer setup 
+encoder_max_length: 256
+decoder_max_length: 64
+
+# Setting up decoder config
+max_length: 64
+early_stopping : True
+no_repeat_ngram_size : 3
+length_penalty : 2.0
+num_beams : 4
+
+# Setting up trainer configs
+predict_with_generate : True
+do_train : True
+do_eval: True
+logging_steps : 200  
+save_steps: 5000 
+eval_steps: 7500 
+warmup_steps: 3000  
+num_train_epochs: 10 
+overwrite_output_dir : True
+save_total_limit: 50
+fp16: True
