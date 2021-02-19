@@ -7,7 +7,7 @@ from general_utils import *
 import yaml
 
 with open('./config.yaml') as f:
-    configs = yaml.load(f, Loader=yaml.FullLoader)
+    configs = yaml.load(f, Loader=yaml.SafeLoader)
 
 train_data_batch = get_data_batch(path='./data/train_tokenized/*', batch_size=configs['batch_size'])
 val_data_batch = get_data_batch(path='./data/val_tokenized/*', batch_size=configs['batch_size'])
