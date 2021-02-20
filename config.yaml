@@ -2,7 +2,7 @@ output_dir: ./training
 batch_size: 16
 
 # Tokenizer setup 
-encoder_max_length: 512
+encoder_max_length: 256
 decoder_max_length: 64
 
 # Setting up decoder config
