@@ -2,7 +2,7 @@ output_dir: ./training
 batch_size: 16
 
 # Tokenizer setup 
-encoder_max_length: 256
+encoder_max_length: 512
 decoder_max_length: 64
 
 # Setting up decoder config
@@ -20,7 +20,7 @@ logging_steps : 200
 save_steps: 5000 
 eval_steps: 7500 
 warmup_steps: 3000  
-num_train_epochs: 10 
+num_train_epochs: 15 
 overwrite_output_dir : True
-save_total_limit: 50
+save_total_limit: 30
 fp16: True

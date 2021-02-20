@@ -8,9 +8,11 @@ from transformers import TrainingArguments
 from dataclasses import dataclass, field
 from typing import Optional
 import yaml
+import datasets
+
 
 with open('./config.yaml') as f:
-    configs = yaml.load(f, Loader=yaml.FullLoader)
+    configs = yaml.load(f, Loader=yaml.SafeLoader)
 
 tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base", use_fast=False)
 encoder_max_length=configs['encoder_max_length']
