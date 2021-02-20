@@ -1,5 +1,6 @@
 output_dir: ./training
 batch_size: 16
+gcp_path: gs://kaggle-vbdi-test/nlp-text-summarization/15epochs
 
 # Tokenizer setup 
 encoder_max_length: 256

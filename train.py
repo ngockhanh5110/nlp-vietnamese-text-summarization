@@ -5,6 +5,7 @@ from transformers import EncoderDecoderModel
 from general_utils import *
 
 import yaml
+import os
 
 with open('./config.yaml') as f:
     configs = yaml.load(f, Loader=yaml.SafeLoader)
@@ -53,3 +54,5 @@ trainer = Seq2SeqTrainer(
     eval_dataset=val_data_batch,
 )
 trainer.train()
+
+os.system('gsutil -m cp -r "{}/*" "{}"'.format(configs['output_dir'],configs['gcp_path']))
