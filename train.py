@@ -13,7 +13,14 @@ with open('./config.yaml') as f:
 train_data_batch = get_data_batch(path='./data/train_tokenized/*', batch_size=configs['batch_size'])
 val_data_batch = get_data_batch(path='./data/val_tokenized/*', batch_size=configs['batch_size'])
 
-roberta_shared = EncoderDecoderModel.from_encoder_decoder_pretrained("vinai/phobert-base", "vinai/phobert-base", tie_encoder_decoder=True)
+if configs['load_pretrained']: 
+    os.makedirs(configs['output_dir']+'/pretrained/', exist_ok=True)
+    os.system('gsutil -m cp -r "{}/*" "{}"'.format(configs['gcp_pretrained_path'],configs['output_dir']+'/pretrained/'))
+
+    roberta_shared = EncoderDecoderModel.from_pretrained(configs['output_dir']+'/pretrained/', tie_encoder_decoder=True)
+else:
+    roberta_shared = EncoderDecoderModel.from_encoder_decoder_pretrained("vinai/phobert-base", "vinai/phobert-base", tie_encoder_decoder=True)
+
 # set special tokens
 roberta_shared.config.decoder_start_token_id = tokenizer.bos_token_id                                             
 roberta_shared.config.eos_token_id = tokenizer.eos_token_id

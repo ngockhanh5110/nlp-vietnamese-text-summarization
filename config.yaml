@@ -1,6 +1,8 @@
 output_dir: ./training
 batch_size: 16
 gcp_path: gs://kaggle-vbdi-test/nlp-text-summarization/15epochs
+gcp_pretrained_path: gs://kaggle-vbdi-test/training_data/checkpoint-65000/*
+load_pretrained: True
 
 # Tokenizer setup 
 encoder_max_length: 256
@@ -18,10 +20,10 @@ predict_with_generate : True
 do_train : True
 do_eval: True
 logging_steps : 200  
-save_steps: 5000 
+save_steps: 1000 
 eval_steps: 7500 
 warmup_steps: 3000  
-num_train_epochs: 15 
+num_train_epochs: 10
 overwrite_output_dir : True
 save_total_limit: 30
 fp16: True
