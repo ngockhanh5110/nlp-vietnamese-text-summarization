@@ -1,7 +1,7 @@
 output_dir: ./training
 batch_size: 16
 gcp_path: gs://kaggle-vbdi-test/nlp-text-summarization/15epochs
-gcp_pretrained_path: gs://kaggle-vbdi-test/training_data/checkpoint-65000/*
+gcp_pretrained_path: gs://kaggle-vbdi-test/training_data/checkpoint-65000
 load_pretrained: True
 
 # Tokenizer setup 
