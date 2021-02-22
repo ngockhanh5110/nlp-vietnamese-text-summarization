@@ -50,6 +50,11 @@ with open('./testing/prediction.pkl', 'wb') as f:
     pickle.dump(results["pred"], f, protocol=pickle.HIGHEST_PROTOCOL)
 with open('./testing/reference.pkl', 'wb') as f:
     pickle.dump(results["summary"], f, protocol=pickle.HIGHEST_PROTOCOL)
-with open('./testing/rouge.txt', 'wb') as f:
+with open('./testing/rouge.txt', 'w+') as f:
     for key,value in rouge_output.items():
-        f.write(key,' : ', repr(value.mid))
+        f.write(key.upper())
+        f.write(' : ')
+        f.write(repr(value.mid))
+        f.write('\n')
+
+
