@@ -69,10 +69,12 @@ def process_data_to_model_inputs(batch):
                                                                                                          
     return batch  
 
-def get_data_batch(path, batch_size=16 ):
+def get_data_batch(path, batch_size=16, test = False ):
     paths = listPaths(path)
     df = get_dataframe(paths)
     data =  Dataset.from_pandas(df)
+    if test:
+        return data
 
     data_batch = data.map(
         process_data_to_model_inputs, 

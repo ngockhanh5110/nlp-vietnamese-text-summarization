@@ -16,8 +16,12 @@ val_data_batch = get_data_batch(path='./data/val_tokenized/*', batch_size=config
 if configs['load_pretrained']: 
     os.makedirs(configs['output_dir']+'/pretrained/', exist_ok=True)
     os.system('gsutil -m cp -r "{}/*" "{}"'.format(configs['gcp_pretrained_path'],configs['output_dir']+'/pretrained/'))
-
-    roberta_shared = EncoderDecoderModel.from_pretrained(configs['output_dir']+'/pretrained/', tie_encoder_decoder=True)
+    try:
+        roberta_shared = EncoderDecoderModel.from_pretrained(configs['output_dir']+'/pretrained/', tie_encoder_decoder=True)
+    except:
+        print('Warning: There is no pretrained model in the provided link. Initializing a new model weights.')
+        roberta_shared = EncoderDecoderModel.from_encoder_decoder_pretrained("vinai/phobert-base", "vinai/phobert-base", tie_encoder_decoder=True)    
+        
 else:
     roberta_shared = EncoderDecoderModel.from_encoder_decoder_pretrained("vinai/phobert-base", "vinai/phobert-base", tie_encoder_decoder=True)
 
@@ -62,4 +66,9 @@ trainer = Seq2SeqTrainer(
 )
 trainer.train()
 
-os.system('gsutil -m cp -r "{}/*" "{}"'.format(configs['output_dir'],configs['gcp_path']))
+if configs['saved_gcp']:
+    print('Warning: Model traned done. Copying traning files to GCP.')
+    os.system('gsutil -m cp -r "{}" "{}"'.format(configs['output_dir'],configs['gcp_path']))
+else: 
+    print('Warning: Model traned done. No saved folder on GCP.')
+    
