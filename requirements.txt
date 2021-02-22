@@ -5,3 +5,6 @@ git-python==1.0.3
 sacrebleu==1.4.12
 rouge_score
 PyYAML
+gsutil
+streamlit
+torch
