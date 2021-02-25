@@ -29,3 +29,4 @@ The model outperforms the recent research paper on Vietnamese text summarization
 # Reference
 1. Nguyen, Van-Hau & Nguyen, Thanh-Chinh & Nguyen, Minh-Tien & Hoai, Nguyen. (2019). VNDS: A Vietnamese Dataset for Summarization. 375-380. 10.1109/NICS48868.2019.9023886. 
 2. Rothe, Sascha & Narayan, Shashi & Severyn, Aliaksei. (2020). Leveraging Pre-trained Checkpoints for Sequence Generation Tasks. Transactions of the Association for Computational Linguistics. 8. 264-280. 10.1162/tacl_a_00313. 
+3. Nguyen, Dat Quoc & Nguyen, Anh. (2020). PhoBERT: Pre-trained language models for Vietnamese. 1037-1042. 10.18653/v1/2020.findings-emnlp.92. 
