@@ -19,7 +19,7 @@ from torch import nn
 from torch.utils.data import DistributedSampler, RandomSampler
 import os
 
-from transformers import PreTrainedModel, Trainer, logging
+from transformers import PreTrainedModel, Trainer, logging, TrainerCallback
 from transformers.file_utils import is_torch_tpu_available
 from transformers.integrations import is_fairscale_available
 from transformers.models.fsmt.configuration_fsmt import FSMTConfig
