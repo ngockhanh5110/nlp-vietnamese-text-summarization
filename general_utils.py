@@ -3,7 +3,7 @@ import concurrent.futures
 from transformers import RobertaTokenizerFast,AutoTokenizer
 import pandas as pd
 from datasets import *
-from seq2seq_trainer import Seq2SeqTrainer
+from seq2seq_trainer import Seq2SeqTrainer, UploaderCallback
 from transformers import TrainingArguments
 from dataclasses import dataclass, field
 from typing import Optional
@@ -32,6 +32,12 @@ def read_content(pathfile):
     with open(pathfile) as f:
         rows  = f.readlines()
         original = ' '.join(''.join(rows[4:]).split('\n'))
+
+        if configs['number_sentences_original'] != None:
+            __split__ = original.split(' . ')
+            __numSen__ = configs['number_sentences_original'] if configs['number_sentences_original'] <= len(__split__) else len(__split__)
+            original = ' . '.join([__split__[i] for i in range(__numSen__)])
+        
         summary = ' '.join(rows[2].split('\n'))
             
     return {'file' : pathfile,

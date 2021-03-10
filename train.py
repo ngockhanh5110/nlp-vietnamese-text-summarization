@@ -63,12 +63,14 @@ trainer = Seq2SeqTrainer(
     compute_metrics=compute_metrics,
     train_dataset=train_data_batch,
     eval_dataset=val_data_batch,
+    callbacks = [UploaderCallback(gcp=configs['gcp_path'],
+    output_dir=configs['output_dir'])]
 )
 trainer.train()
 
-if configs['saved_gcp']:
-    print('Warning: Model traned done. Copying traning files to GCP.')
-    os.system('gsutil -m cp -r "{}" "{}"'.format(configs['output_dir'],configs['gcp_path']))
-else: 
-    print('Warning: Model traned done. No saved folder on GCP.')
+# if configs['saved_gcp']:
+#     print('Warning: Model traned done. Copying traning files to GCP.')
+#     os.system('gsutil -m cp -r "{}" "{}"'.format(configs['output_dir'],configs['gcp_path']))
+# else: 
+#     print('Warning: Model traned done. No saved folder on GCP.')
     

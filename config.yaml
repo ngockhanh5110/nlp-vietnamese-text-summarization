@@ -2,17 +2,18 @@ output_dir: ./training
 batch_size: 16
 
 saved_gcp: True
-gcp_path: gs://kaggle-vbdi-test/nlp-text-summarization/15epochs
+gcp_path: gs://kaggle-vbdi-test/nlp-text-summarization/shorten-sentence
 
-load_pretrained: True
+load_pretrained: False
 gcp_pretrained_path: gs://kaggle-vbdi-test/nlp-text-summarization/15epochs/checkpoint-65000
 
 # Tokenizer setup 
 encoder_max_length: 256
-decoder_max_length: 64
+decoder_max_length: 32
+number_sentences_original: 10
 
 # Setting up decoder config
-max_length: 64
+max_length: 32
 early_stopping : True
 no_repeat_ngram_size : 3
 length_penalty : 2.0

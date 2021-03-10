@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import torch
 from torch import nn
 from torch.utils.data import DistributedSampler, RandomSampler
+import os
 
 from transformers import PreTrainedModel, Trainer, logging
 from transformers.file_utils import is_torch_tpu_available
@@ -51,6 +52,15 @@ arg_to_scheduler = {
     "constant_w_warmup": get_constant_schedule_with_warmup,
 }
 
+class UploaderCallback(TrainerCallback):
+    def __init__(self, gcp, output_dir, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.gcp = gcp
+        self.output_dir = output_dir 
+    
+    def on_epoch_end(self, args, state, control, **kwargs):
+        print('INFO: Epoch done. Copying traning files to GCP.')
+        os.system('gsutil -m cp -r "{}" "{}"'.format(self.output_dir ,self.gcp ))
 
 class Seq2SeqTrainer(Trainer):
     def __init__(self, config=None, data_args=None, *args, **kwargs):
