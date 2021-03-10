@@ -24,7 +24,7 @@ predict_with_generate : True
 do_train : True
 do_eval: True
 logging_steps : 200  
-save_steps: 1000 
+save_steps: 5000 
 eval_steps: 7500 
 warmup_steps: 3000  
 num_train_epochs: 10
