@@ -58,8 +58,8 @@ class UploaderCallback(TrainerCallback):
         self.gcp = gcp
         self.output_dir = output_dir 
     
-    def on_epoch_end(self, args, state, control, **kwargs):
-        print('INFO: Epoch done. Copying traning files to GCP.')
+    def on_train_end(self, args, state, control, **kwargs):
+        print('INFO: Training done. Copying traning files to GCP.')
         os.system('gsutil -m cp -r "{}" "{}"'.format(self.output_dir ,self.gcp ))
 
 class Seq2SeqTrainer(Trainer):

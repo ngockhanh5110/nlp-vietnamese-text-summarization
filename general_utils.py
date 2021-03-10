@@ -33,7 +33,7 @@ def read_content(pathfile):
         rows  = f.readlines()
         original = ' '.join(''.join(rows[4:]).split('\n'))
 
-        if configs['number_sentences_original'] != None:
+        if configs['number_sentences_original']:
             __split__ = original.split(' . ')
             __numSen__ = configs['number_sentences_original'] if configs['number_sentences_original'] <= len(__split__) else len(__split__)
             original = ' . '.join([__split__[i] for i in range(__numSen__)])
